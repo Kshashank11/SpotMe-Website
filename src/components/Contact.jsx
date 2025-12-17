@@ -46,7 +46,7 @@ function Contact() {
               </div>
               <div>
                 <h4>Email</h4>
-                <p>contact@spotme.com</p>
+                <p>kumar_shashank@spot-me.net</p>
               </div>
             </div>
             <div className="contact-item">
@@ -57,7 +57,7 @@ function Contact() {
               </div>
               <div>
                 <h4>Phone</h4>
-                <p>+1 (555) 123-4567</p>
+                <p>+1 (765) 409-7957</p>
               </div>
             </div>
             <div className="contact-item">
@@ -69,7 +69,7 @@ function Contact() {
               </div>
               <div>
                 <h4>Location</h4>
-                <p>San Francisco, CA</p>
+                <p>New York City, NY</p>
               </div>
             </div>
           </div>
