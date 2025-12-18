@@ -162,11 +162,15 @@
   }
 
   .contact-details {
-    align-items: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
   }
 
   .contact-item {
     text-align: left;
+    width: 100%;
   }
 }
 
