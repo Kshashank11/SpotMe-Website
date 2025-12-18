@@ -16,14 +16,14 @@ function About() {
           <p className="about-text">
             SpotMe is revolutionizing urban parking with intelligent technology. We address the
             critical pain points that drivers, parking operators, and municipalities face daily:
-            wasted time searching for spots, static pricing that doesn't reflect demand, and
-            security concerns in parking facilities.
+            <strong> wasted time searching for spots, static pricing that doesn't reflect demand, and
+            security concerns in parking facilities.</strong>
           </p>
           <p className="about-text">
             Our IoT-powered platform combines real-time availability tracking, dynamic pricing,
             guaranteed reservations, and automated enforcement to create a seamless parking
-            experience. Whether you're a daily commuter, parking lot operator, or city planner,
-            SpotMe delivers solutions that save time, reduce costs, and lower emissions.
+            experience. <strong>Whether you're a daily commuter, parking lot operator, or city planner,
+            SpotMe delivers solutions that save time, reduce costs, and lower emissions.</strong>
           </p>
           <div className="about-values">
             <div className="value-item">

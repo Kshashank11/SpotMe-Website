@@ -46,7 +46,7 @@ function Services() {
         </svg>
       ),
       title: 'Smart IoT Sensors',
-      description: 'Affordable, scalable sensor technology using IR, RFID, and BLE. Easy deployment for curbside, garages, and residential areas without expensive infrastructure.',
+      description: 'Affordable, scalable sensor technology using Radar, GNSS and BLE. Easy deployment for curbside, garages, and residential areas without expensive infrastructure.',
     },
     {
       icon: (
