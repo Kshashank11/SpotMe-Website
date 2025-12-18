@@ -122,7 +122,7 @@ function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  placeholder="John Doe"
+                  placeholder=""
                 />
               </div>
               <div className="form-group">
@@ -134,7 +134,7 @@ function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  placeholder="john@example.com"
+                  placeholder=""
                 />
               </div>
               <div className="form-group">
@@ -145,7 +145,7 @@ function Contact() {
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
-                  placeholder="Your Company"
+                  placeholder=""
                 />
               </div>
               <div className="form-group">
