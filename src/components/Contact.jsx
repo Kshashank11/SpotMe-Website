@@ -1,5 +1,10 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import './Contact.css';
+
+const EMAILJS_SERVICE_ID = 'service_qkb0hmn';
+const EMAILJS_TEMPLATE_ID = 'template_3pj9qwe';
+const EMAILJS_PUBLIC_KEY = 'OIXseEg65VLn1sWVw';
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -9,6 +14,8 @@ function Contact() {
     message: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,13 +25,34 @@ function Contact() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In a real application, you would send this data to a server
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
-    setFormData({ name: '', email: '', company: '', message: '' });
-    setTimeout(() => setIsSubmitted(false), 5000);
+    setIsLoading(true);
+    setError('');
+
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      company: formData.company || 'Not provided',
+      message: formData.message,
+    };
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+      setIsSubmitted(true);
+      setFormData({ name: '', email: '', company: '', message: '' });
+      setTimeout(() => setIsSubmitted(false), 5000);
+    } catch (err) {
+      setError('Failed to send message. Please try again.');
+      console.error('EmailJS error:', err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -132,8 +160,9 @@ function Contact() {
                   placeholder="Tell us about your parking needs..."
                 ></textarea>
               </div>
-              <button type="submit" className="btn btn-primary btn-submit">
-                Send Message
+              {error && <p className="error-message">{error}</p>}
+              <button type="submit" className="btn btn-primary btn-submit" disabled={isLoading}>
+                {isLoading ? 'Sending...' : 'Send Message'}
               </button>
             </form>
           )}
