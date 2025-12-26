@@ -8,7 +8,7 @@ function Footer() {
       <div className="footer-container">
         <div className="footer-main">
           <div className="footer-brand">
-            <img src="/SpotMeLogo.png" alt="SpotMe" className="footer-logo-image" />
+            <img src="/SpotMeLogo.png" alt="SpotMe - Smart Parking Solutions" className="footer-logo-image" loading="lazy" />
             <p className="footer-tagline">
               Smart parking solutions for drivers, operators, and cities.
               Find, book, and pay for parking with ease.

@@ -8,7 +8,8 @@ function Navbar() {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const scrollToSection = (sectionId) => {
+  const handleNavClick = (e, sectionId) => {
+    e.preventDefault();
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -17,21 +18,21 @@ function Navbar() {
   };
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" role="navigation" aria-label="Main navigation">
       <div className="navbar-container">
-        <div className="navbar-logo" onClick={() => scrollToSection('hero')}>
-          <img src="/SpotMeLogo.png" alt="SpotMe" className="logo-image" />
-        </div>
+        <a href="#hero" className="navbar-logo" onClick={(e) => handleNavClick(e, 'hero')}>
+          <img src="/SpotMeLogo.png" alt="SpotMe - Smart Parking Solutions" className="logo-image" />
+        </a>
 
-        <button className="menu-toggle" onClick={toggleMenu} aria-label="Toggle menu">
+        <button className="menu-toggle" onClick={toggleMenu} aria-label="Toggle menu" aria-expanded={isMenuOpen}>
           <span className={`hamburger ${isMenuOpen ? 'open' : ''}`}></span>
         </button>
 
         <ul className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
-          <li><a onClick={() => scrollToSection('hero')}>Home</a></li>
-          <li><a onClick={() => scrollToSection('about')}>About</a></li>
-          <li><a onClick={() => scrollToSection('services')}>Solutions</a></li>
-          <li><a onClick={() => scrollToSection('contact')}>Contact</a></li>
+          <li><a href="#hero" onClick={(e) => handleNavClick(e, 'hero')}>Home</a></li>
+          <li><a href="#about" onClick={(e) => handleNavClick(e, 'about')}>About</a></li>
+          <li><a href="#services" onClick={(e) => handleNavClick(e, 'services')}>Solutions</a></li>
+          <li><a href="#contact" onClick={(e) => handleNavClick(e, 'contact')}>Contact</a></li>
         </ul>
       </div>
     </nav>
