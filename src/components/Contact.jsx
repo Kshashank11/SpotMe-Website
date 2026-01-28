@@ -74,7 +74,7 @@ function Contact() {
               </div>
               <div>
                 <h4>Email</h4>
-                <p>kumar_shashank@spot-me.net</p>
+                <p>admin@spot-me.net</p>
               </div>
             </div>
             <div className="contact-item">
