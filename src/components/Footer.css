@@ -97,6 +97,19 @@
   color: white;
 }
 
+.footer-contact-block {
+  padding: 1.5rem 0 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.footer-patent {
+  color: rgba(255, 255, 255, 0.5);
+  margin-left: 0.5rem;
+}
+
 .footer-bottom {
   padding-top: 2rem;
   text-align: center;

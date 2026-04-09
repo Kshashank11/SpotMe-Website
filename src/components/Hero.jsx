@@ -1,65 +1,58 @@
 import './Hero.css';
+import HeroIllustration from './HeroIllustration';
+
+// TODO: replace with real Calendly link
+const CALENDLY_URL = 'https://calendly.com/spotme-demo/15min';
+const FOUNDER_MAILTO = 'mailto:admin@spot-me.net?subject=SpotMe%20Demo%20Request';
 
 function Hero() {
-  const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const scrollToServices = () => {
-    const element = document.getElementById('services');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const stats = [
+    { value: '±1m', desc: 'Spot-level detection accuracy' },
+    { value: '<2%', desc: 'False positive rate' },
+    { value: '20 min', desc: 'Per-device deploy time' },
+    { value: '8', desc: 'Spots covered per $300 device' },
+  ];
 
   return (
     <section id="hero" className="hero">
-      <div className="hero-content">
-        <h1 className="hero-title">
-          Smart Parking
-          <span className="highlight"> Made Simple</span>
-        </h1>
-        <p className="hero-subtitle">
-          Find affordable, secure parking in seconds. SpotMe offers real-time availability,
-          dynamic pricing, and guaranteed reservations powered by advanced IoT technology.
-        </p>
-        <div className="hero-buttons">
-          <button className="btn btn-primary" onClick={scrollToContact}>
-            Get Started
-          </button>
-          <button className="btn btn-secondary" onClick={scrollToServices}>
-            Our Solutions
-          </button>
+      <div className="hero-inner">
+        <div className="hero-content">
+          <span className="patent-badge">Patent Pending (US)</span>
+          <h1 className="hero-title">
+            Know every spot in your lot.{' '}
+            <span className="highlight">Close the revenue leak.</span>{' '}
+            Deploy in 20 minutes.
+          </h1>
+          <p className="hero-subtitle">
+            SpotMe is an IoT + mobile platform for private parking operators.
+            Radar sensors track occupancy in real time, the SpotMe app lets drivers
+            book and pay on the spot, and you get a full revenue and enforcement
+            dashboard — no trenching, no pavement sensors, no construction.
+          </p>
+          <div className="hero-buttons">
+            <a
+              className="btn btn-primary"
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Book a 15-min demo
+            </a>
+            <a className="btn btn-ghost" href={FOUNDER_MAILTO}>
+              Email the founder
+            </a>
+          </div>
+          <div className="hero-stats">
+            {stats.map((s) => (
+              <div key={s.value} className="hero-stat">
+                <span className="stat-value">{s.value}</span>
+                <span className="stat-desc">{s.desc}</span>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="hero-stats">
-          <div className="hero-stat">
-            <span className="stat-value">43%</span>
-            <span className="stat-desc">Less Search Time</span>
-          </div>
-          <div className="hero-stat">
-            <span className="stat-value">30%</span>
-            <span className="stat-desc">Reduced Emissions</span>
-          </div>
-          <div className="hero-stat">
-            <span className="stat-value">24/7</span>
-            <span className="stat-desc">Real-Time Data</span>
-          </div>
-        </div>
-      </div>
-      <div className="hero-visual">
-        <div className="hero-graphic">
-          <div className="graphic-circle circle-1"></div>
-          <div className="graphic-circle circle-2"></div>
-          <div className="graphic-circle circle-3"></div>
-          <div className="parking-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <path d="M9 17V7h4a3 3 0 0 1 0 6H9" />
-            </svg>
-          </div>
+        <div className="hero-visual">
+          <HeroIllustration />
         </div>
       </div>
     </section>

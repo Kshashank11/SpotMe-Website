@@ -1,0 +1,20 @@
+.pricing {
+  padding: 4rem 2rem;
+  background: #F1F8E9;
+  text-align: center;
+}
+
+.pricing-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.pricing-line {
+  font-size: 1.2rem;
+  color: #1e293b;
+  line-height: 1.6;
+}

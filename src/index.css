@@ -1,11 +1,11 @@
 :root {
-  --primary-color: #16a34a;
-  --primary-hover: #15803d;
-  --primary-light: #22c55e;
+  --primary-color: #2E7D32;
+  --primary-hover: #1B5E20;
+  --primary-light: #43A047;
   --text-color: #1e293b;
   --text-light: #64748b;
   --background: #ffffff;
-  --surface: #f0fdf4;
+  --surface: #F1F8E9;
 }
 
 * {
@@ -64,7 +64,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-primary:hover {
   background: var(--primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
 }
 
 .btn-secondary {

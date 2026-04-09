@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import './Navbar.css';
 
+// TODO: replace with real Calendly link
+const CALENDLY_URL = 'https://calendly.com/spotme-demo/15min';
+
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -17,6 +20,14 @@ function Navbar() {
     setIsMenuOpen(false);
   };
 
+  const links = [
+    { label: 'Home', id: 'hero' },
+    { label: 'How it works', id: 'how-it-works' },
+    { label: "Who it's for", id: 'services' },
+    { label: 'Pricing', id: 'pricing' },
+    { label: 'Contact', id: 'contact' },
+  ];
+
   return (
     <nav className="navbar" role="navigation" aria-label="Main navigation">
       <div className="navbar-container">
@@ -29,11 +40,22 @@ function Navbar() {
         </button>
 
         <ul className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
-          <li><a href="#hero" onClick={(e) => handleNavClick(e, 'hero')}>Home</a></li>
-          <li><a href="#about" onClick={(e) => handleNavClick(e, 'about')}>About</a></li>
-          <li><a href="#services" onClick={(e) => handleNavClick(e, 'services')}>Solutions</a></li>
-          <li><a href="#contact" onClick={(e) => handleNavClick(e, 'contact')}>Contact</a></li>
+          {links.map((l) => (
+            <li key={l.id}>
+              <a href={`#${l.id}`} onClick={(e) => handleNavClick(e, l.id)}>{l.label}</a>
+            </li>
+          ))}
         </ul>
+
+        <a
+          className="navbar-cta btn btn-primary"
+          href={CALENDLY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className="cta-label-full">Book a demo</span>
+          <span className="cta-label-short">Demo</span>
+        </a>
       </div>
     </nav>
   );

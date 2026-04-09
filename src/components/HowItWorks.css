@@ -1,0 +1,62 @@
+.how-it-works {
+  padding: 6rem 2rem;
+  background: #ffffff;
+}
+
+.how-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.how-card {
+  padding: 2rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.how-card:hover {
+  border-color: #2E7D32;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(46, 125, 50, 0.1);
+}
+
+.how-number {
+  width: 42px;
+  height: 42px;
+  border-radius: 9999px;
+  background: #2E7D32;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.how-title {
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: #2E7D32;
+  margin-bottom: 0.5rem;
+}
+
+.how-desc {
+  color: #64748b;
+  line-height: 1.7;
+}
+
+@media (max-width: 968px) {
+  .how-grid {
+    grid-template-columns: 1fr;
+  }
+}

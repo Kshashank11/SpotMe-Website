@@ -53,8 +53,13 @@ function Footer() {
             </div>
           </div>
         </div>
+        <div className="footer-contact-block">
+          <p>admin@spot-me.net</p>
+          <p>New York City, NY</p>
+          <p>Spot-Me Solutions, Inc.</p>
+        </div>
         <div className="footer-bottom">
-          <p>&copy; {currentYear} SpotMe. All rights reserved.</p>
+          <p>&copy; {currentYear} SpotMe. All rights reserved. <span className="footer-patent">Patent Pending (US)</span></p>
         </div>
       </div>
     </footer>

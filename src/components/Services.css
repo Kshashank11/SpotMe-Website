@@ -1,6 +1,6 @@
 .services {
   padding: 6rem 2rem;
-  background: #f0fdf4;
+  background: #F1F8E9;
 }
 
 .services-container {
@@ -40,7 +40,7 @@
 .service-icon {
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg, var(--primary-color) 0%, #166534 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, #0F3F16 100%);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -67,9 +67,73 @@
   font-size: 0.95rem;
 }
 
+.outcome-grid {
+  grid-template-columns: 1.4fr 1fr 1fr;
+  align-items: stretch;
+}
+
+.outcome-card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.outcome-primary {
+  background: linear-gradient(180deg, #F1F8E9 0%, #ffffff 100%);
+  border: 2px solid #2E7D32;
+  box-shadow: 0 10px 40px rgba(46, 125, 50, 0.12);
+}
+
+.outcome-audience {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2E7D32;
+  margin-bottom: 0.75rem;
+}
+
+.outcome-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.outcome-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.outcome-bullets li {
+  position: relative;
+  padding-left: 1.4rem;
+  color: #64748b;
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+.outcome-bullets li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #2E7D32;
+  font-weight: 700;
+}
+
 @media (max-width: 968px) {
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .outcome-grid {
+    grid-template-columns: 1fr;
   }
 }
 

@@ -4,7 +4,12 @@
       "Bash(npm run build:*)",
       "Bash(npm install:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(npm run:*)",
+      "Bash(kill %1 2>/dev/null; npm run build 2>&1 | tail -10)",
+      "Bash(kill %1 2>/dev/null; pkill -f \"vite preview\" 2>/dev/null; true)",
+      "Bash(rm -rf /Users/kumarshashank/Desktop/SpotMe-Website/src/pages && npm uninstall react-router-dom 2>&1 | tail -5)",
+      "Bash(pkill -f \"vite preview\" 2>/dev/null; sleep 1; npm run preview -- --port 4173)"
     ]
   }
 }

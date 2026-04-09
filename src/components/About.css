@@ -12,6 +12,16 @@
   align-items: center;
 }
 
+.about-container.about-single {
+  display: block;
+  max-width: 900px;
+  text-align: center;
+}
+
+.about-content-wide {
+  max-width: 100% !important;
+}
+
 .about-content {
   max-width: 550px;
 }
@@ -54,12 +64,12 @@
 }
 
 .stat-card {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #166534 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, #0F3F16 100%);
   padding: 2rem;
   border-radius: 12px;
   text-align: center;
   color: white;
-  box-shadow: 0 10px 30px rgba(22, 163, 74, 0.2);
+  box-shadow: 0 10px 30px rgba(46, 125, 50, 0.2);
   transition: transform 0.3s ease;
 }
 
