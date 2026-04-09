@@ -1,7 +1,6 @@
 import './Pricing.css';
 
-// TODO: replace with real Calendly link
-const CALENDLY_URL = 'https://calendly.com/spotme-demo/15min';
+const CALENDLY_URL = 'https://calendly.com/admin-spot-me/30min';
 
 function Pricing() {
   return (

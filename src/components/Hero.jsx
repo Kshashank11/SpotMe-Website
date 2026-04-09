@@ -1,8 +1,7 @@
 import './Hero.css';
 import HeroIllustration from './HeroIllustration';
 
-// TODO: replace with real Calendly link
-const CALENDLY_URL = 'https://calendly.com/spotme-demo/15min';
+const CALENDLY_URL = 'https://calendly.com/admin-spot-me/30min';
 const FOUNDER_MAILTO = 'mailto:admin@spot-me.net?subject=SpotMe%20Demo%20Request';
 
 function Hero() {
