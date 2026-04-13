@@ -17,8 +17,7 @@ function About() {
             lets drivers book and pay in seconds, closing the loop between detection
             and revenue. And our dashboard gives you real-time occupancy,
             enforcement alerts, and demand-based pricing recommendations.
-            <strong> No construction. No pavement sensors. No fleet of enforcement
-            officers needed.</strong>
+            <strong> No construction. No pavement sensors. Dramatically reduce manual enforcement by automated occupancy monitoring.</strong>
           </p>
         </div>
       </div>
