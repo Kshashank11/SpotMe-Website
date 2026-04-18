@@ -1,3 +1,4 @@
+import { useScrollReveal } from '../hooks/useScrollReveal';
 import './Services.css';
 
 const blocks = [
@@ -35,25 +36,28 @@ const blocks = [
 ];
 
 function Services() {
+  const ref = useScrollReveal();
+
   return (
     <section id="services" className="services">
-      <div className="services-container">
+      <div ref={ref} className="services-container scroll-reveal">
         <h2 className="section-title">Who it's for</h2>
         <p className="section-subtitle">
           One deployment, three outcomes. The driver app is the payment rail that
           closes the loop for operators.
         </p>
         <div className="services-grid outcome-grid">
-          {blocks.map((b) => (
+          {blocks.map((b, i) => (
             <div
               key={b.audience}
-              className={`service-card outcome-card ${b.primary ? 'outcome-primary' : ''}`}
+              className="service-card outcome-card"
+              style={{ transitionDelay: `${i * 0.12}s` }}
             >
               <span className="outcome-audience">{b.audience}</span>
               <h3 className="outcome-title">{b.title}</h3>
               <ul className="outcome-bullets">
-                {b.bullets.map((bullet, i) => (
-                  <li key={i}>{bullet}</li>
+                {b.bullets.map((bullet, j) => (
+                  <li key={j}>{bullet}</li>
                 ))}
               </ul>
             </div>

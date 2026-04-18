@@ -1,9 +1,12 @@
+import { useScrollReveal } from '../hooks/useScrollReveal';
 import './About.css';
 
 function About() {
+  const ref = useScrollReveal();
+
   return (
     <section id="about" className="about">
-      <div className="about-container about-single">
+      <div ref={ref} className="about-container about-single scroll-reveal">
         <div className="about-content about-content-wide">
           <h2 className="section-title">Built for private parking operators</h2>
           <p className="about-text">

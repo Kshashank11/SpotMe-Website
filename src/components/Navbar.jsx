@@ -1,10 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Navbar.css';
 
 const CALENDLY_URL = 'https://calendly.com/admin-spot-me/30min';
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -28,7 +35,7 @@ function Navbar() {
   ];
 
   return (
-    <nav className="navbar" role="navigation" aria-label="Main navigation">
+    <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`} role="navigation" aria-label="Main navigation">
       <div className="navbar-container">
         <a href="#hero" className="navbar-logo" onClick={(e) => handleNavClick(e, 'hero')}>
           <img src="/SpotMeLogo.png" alt="SpotMe - Smart Parking Solutions" className="logo-image" />

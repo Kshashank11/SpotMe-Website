@@ -1,3 +1,4 @@
+import { useScrollReveal } from '../hooks/useScrollReveal';
 import './HowItWorks.css';
 
 const steps = [
@@ -19,9 +20,11 @@ const steps = [
 ];
 
 function HowItWorks() {
+  const ref = useScrollReveal();
+
   return (
     <section id="how-it-works" className="how-it-works">
-      <div className="how-container">
+      <div ref={ref} className="how-container scroll-reveal">
         <h2 className="section-title">How it works</h2>
         <div className="how-grid">
           {steps.map((s) => (

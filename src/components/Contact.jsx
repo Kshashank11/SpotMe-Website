@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 import './Contact.css';
 
 const EMAILJS_SERVICE_ID = 'service_qkb0hmn';
@@ -7,6 +8,7 @@ const EMAILJS_TEMPLATE_ID = 'template_3pj9qwe';
 const EMAILJS_PUBLIC_KEY = 'OIXseEg65VLn1sWVw';
 
 function Contact() {
+  const ref = useScrollReveal();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -57,7 +59,7 @@ function Contact() {
 
   return (
     <section id="contact" className="contact">
-      <div className="contact-container">
+      <div ref={ref} className="contact-container scroll-reveal">
         <div className="contact-info">
           <h2 className="section-title">Get In Touch</h2>
           <p className="contact-text">
