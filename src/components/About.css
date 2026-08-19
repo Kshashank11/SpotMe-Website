@@ -48,7 +48,17 @@
   line-height: 1.65;
   color: var(--text-muted);
 }
-.about-close strong { color: var(--text); }
+/* The closing claim reads as one statement, so it gets its own line instead of
+   starting mid-sentence and wrapping. nowrap is gated above 480px: below that
+   there genuinely isn't room, and forcing it would cause horizontal overflow. */
+.about-close strong {
+  color: var(--text);
+  display: block;
+  margin-top: var(--sp-3);
+}
+@media (min-width: 480px) {
+  .about-close strong { white-space: nowrap; }
+}
 
 @media (max-width: 860px) {
   .leak-grid { grid-template-columns: 1fr; }
