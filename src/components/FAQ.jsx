@@ -15,7 +15,7 @@ import './FAQ.css';
 const faqs = [
   {
     q: 'Do we have to dig up or close the lot to install it?',
-    a: 'No. Each device mounts to an existing pole or wall and covers about 8 spots. There is no trenching, no pavement cutting, and no power run — which is what keeps deployment to roughly 20 minutes per device instead of a multi-day construction job.',
+    a: 'No. Each device mounts to an existing pole or wall and covers about 5 spots. There is no trenching, no pavement cutting, and no power run — which is what keeps deployment to roughly 20 minutes per device instead of a multi-day construction job.',
   },
   {
     q: 'How accurate is the detection?',
@@ -35,7 +35,7 @@ const faqs = [
   },
   {
     q: 'How many devices will our lot need, and what do they cost?',
-    a: 'Roughly one device per 8 spots, at $300 per device. A 120-space lot is about 15 devices. Software is $8 per spot per month after a free 30-day pilot, with no hardware lock-in and no multi-year contract.',
+    a: 'Roughly one device per 5 spots, at $500 per device. A 120-space lot is about 24 devices. Software is $8 per spot per month after a free 30-day pilot, with no hardware lock-in and no multi-year contract.',
   },
   {
     q: 'Can it work with the payment system or gate we already run?',

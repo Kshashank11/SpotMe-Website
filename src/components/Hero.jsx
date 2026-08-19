@@ -12,7 +12,7 @@ const stats = [
   { value: 1, prefix: '±', suffix: 'm', desc: 'Spot-level detection accuracy' },
   { value: 2, prefix: '<', suffix: '%', desc: 'False positive rate' },
   { value: 20, suffix: ' min', desc: 'Per-device deploy time' },
-  { value: 8, desc: 'Spots covered per $300 device' },
+  { value: 5, desc: 'Spots covered per $500 device' },
 ];
 
 function Stat({ value, prefix = '', suffix = '', desc }) {

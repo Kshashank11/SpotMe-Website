@@ -14,7 +14,8 @@ const CALENDLY_URL = 'https://calendly.com/admin-spot-me/30min';
  * a slider rather than a fixed promise, and the disclaimer stays visible —
  * an ROI widget that quietly overstates is worse than no widget at all.
  */
-const PRICE_PER_SPOT = 8;
+const PRICE_PER_SPOT = 8;      // software, $/spot/month
+const SPOTS_PER_DEVICE = 5;    // radar coverage per unit
 
 const money = (n) =>
   n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
@@ -53,7 +54,7 @@ export default function ROICalculator() {
     const recovered = gross * (uplift / 100);
     const cost = spots * PRICE_PER_SPOT;
     const net = recovered - cost;
-    return { gross, recovered, cost, net, annual: net * 12, devices: Math.ceil(spots / 8) };
+    return { gross, recovered, cost, net, annual: net * 12, devices: Math.ceil(spots / SPOTS_PER_DEVICE) };
   }, [spots, revPerSpot, uplift]);
 
   const positive = r.net >= 0;
@@ -88,7 +89,7 @@ export default function ROICalculator() {
             <Field
               id="roi-spots"
               label="Spots in your lot"
-              hint={`About ${r.devices} device${r.devices === 1 ? '' : 's'} at 8 spots each`}
+              hint={`About ${r.devices} device${r.devices === 1 ? '' : 's'} at ${SPOTS_PER_DEVICE} spots each`}
               value={spots} min={10} max={1000} step={10}
               onChange={setSpots}
             />
