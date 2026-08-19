@@ -1,35 +1,82 @@
-.pricing {
-  padding: 4rem 2rem;
-  background: linear-gradient(135deg, #F1F8E9 0%, #E8F5E9 100%);
-  text-align: center;
+.pricing { position: relative; overflow: hidden; }
+
+.pricing-card {
   position: relative;
-  overflow: hidden;
-}
-
-.pricing::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 500px;
-  height: 500px;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(46, 125, 50, 0.06) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.pricing-inner {
-  max-width: 800px;
+  z-index: 1;
+  max-width: 640px;
   margin: 0 auto;
+  padding: var(--sp-8) var(--sp-6);
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
-  position: relative;
+  box-shadow: var(--sh-lg);
 }
 
-.pricing-line {
-  font-size: 1.2rem;
-  color: #1e293b;
-  line-height: 1.6;
+.pricing-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-3);
+}
+
+.pricing-free {
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--primary);
+  line-height: 1.1;
+}
+
+.pricing-then {
+  font-size: var(--step-1);
+  color: var(--text-muted);
+}
+.pricing-then strong {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 800;
+  color: var(--text);
+}
+.pricing-then span { font-size: 0.95rem; color: var(--text-faint); }
+
+.pricing-terms {
+  font-size: 0.94rem;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-6);
+}
+
+.pricing-includes {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-3) var(--sp-5);
+  text-align: left;
+  margin-bottom: var(--sp-7);
+  width: 100%;
+  max-width: 520px;
+}
+
+.pricing-includes li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  font-size: 0.89rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.pricing-includes svg {
+  width: 15px; height: 15px;
+  flex: none;
+  margin-top: 3px;
+  color: var(--primary);
+}
+
+.pricing-cta { min-width: 240px; }
+
+@media (max-width: 620px) {
+  .pricing-includes { grid-template-columns: 1fr; }
+  .pricing-card { padding: var(--sp-7) var(--sp-5); }
 }

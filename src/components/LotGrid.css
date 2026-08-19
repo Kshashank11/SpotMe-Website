@@ -1,0 +1,54 @@
+.lot-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  gap: 8px;
+  width: 100%;
+}
+
+.lot-spot {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--r-sm);
+  border: 1.5px solid var(--border);
+  background: var(--surface-2);
+  display: grid;
+  place-items: center;
+  transition: border-color .4s var(--ease-out), background .4s var(--ease-out);
+}
+
+.lot-spot.is-occupied {
+  border-color: color-mix(in srgb, var(--occupied) 55%, transparent);
+  background: color-mix(in srgb, var(--occupied) 12%, var(--surface));
+}
+
+.lot-spot.is-free {
+  border-color: color-mix(in srgb, var(--free) 32%, var(--border));
+  background: color-mix(in srgb, var(--free) 6%, var(--surface-2));
+}
+
+.lot-spot-inner {
+  display: grid;
+  place-items: center;
+  color: var(--occupied);
+}
+
+.lot-car { width: 62%; height: auto; }
+
+/* Faint stall marking, visible mainly on empty spots. */
+.lot-stall {
+  position: absolute;
+  left: 50%; bottom: 6px;
+  transform: translateX(-50%);
+  width: 42%; height: 2px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--free) 30%, transparent);
+  opacity: .8;
+}
+.lot-spot.is-occupied .lot-stall { opacity: 0; }
+
+.lot-grid.is-compact { gap: 6px; }
+.lot-grid.is-compact .lot-spot { border-width: 1.2px; }
+
+@media (max-width: 560px) {
+  .lot-grid { gap: 5px; }
+}

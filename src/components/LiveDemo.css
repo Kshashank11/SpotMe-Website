@@ -1,0 +1,180 @@
+.demo-shell {
+  overflow: hidden;
+  box-shadow: var(--sh-lg);
+}
+
+.demo-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-4) var(--sp-5);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+  flex-wrap: wrap;
+}
+
+.demo-bar-left { display: flex; align-items: center; gap: var(--sp-3); }
+
+.demo-lot-name {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.demo-bar-right { display: flex; gap: var(--sp-2); }
+
+.demo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 13px;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: border-color .2s ease, color .2s ease, background .2s ease;
+}
+.demo-btn:hover { border-color: var(--primary); color: var(--primary); }
+.demo-btn svg { width: 13px; height: 13px; fill: currentColor; }
+
+.demo-body {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: var(--sp-6);
+  padding: var(--sp-5);
+}
+
+.demo-legend {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  margin-top: var(--sp-4);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+.demo-legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.sw { width: 12px; height: 12px; border-radius: 3px; border: 1.5px solid; }
+.sw-occupied {
+  border-color: color-mix(in srgb, var(--occupied) 55%, transparent);
+  background: color-mix(in srgb, var(--occupied) 20%, transparent);
+}
+.sw-free {
+  border-color: color-mix(in srgb, var(--free) 40%, transparent);
+  background: color-mix(in srgb, var(--free) 10%, transparent);
+}
+
+.demo-note { color: var(--text-faint); font-size: 0.72rem; margin-left: auto; }
+
+/* ---- side panel ---- */
+.demo-side { display: flex; flex-direction: column; min-width: 0; }
+
+.demo-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-3);
+}
+
+.demo-metric { display: flex; flex-direction: column; gap: 2px; }
+
+.demo-metric-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.demo-metric-value {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.demo-metric-value small { font-size: 0.8rem; color: var(--text-faint); font-weight: 600; }
+
+.demo-meter {
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--bg-sunken);
+  overflow: hidden;
+  margin-bottom: var(--sp-5);
+}
+.demo-meter-fill {
+  display: block; height: 100%;
+  border-radius: var(--r-pill);
+  background: linear-gradient(90deg, var(--primary), var(--occupied));
+}
+
+.demo-feed-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: var(--sp-2);
+}
+
+.demo-feed {
+  flex: 1;
+  min-height: 210px;
+  max-height: 260px;
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+}
+
+.demo-event {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.demo-event-icon {
+  width: 26px; height: 26px;
+  display: grid; place-items: center;
+  border-radius: var(--r-sm);
+  flex: none;
+}
+.demo-event-icon svg { width: 13px; height: 13px; }
+.demo-event-icon.in {
+  color: var(--occupied);
+  background: color-mix(in srgb, var(--occupied) 14%, transparent);
+}
+.demo-event-icon.out {
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 14%, transparent);
+}
+
+.demo-event-text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.demo-event-text strong { font-size: 0.85rem; font-weight: 700; color: var(--text); }
+.demo-event-text span { font-size: 0.75rem; color: var(--text-faint); }
+
+.demo-event-time {
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+  flex: none;
+}
+
+.demo-empty {
+  padding: var(--sp-5) 0;
+  font-size: 0.84rem;
+  color: var(--text-faint);
+}
+
+@media (max-width: 900px) {
+  .demo-body { grid-template-columns: 1fr; gap: var(--sp-5); }
+  .demo-note { margin-left: 0; width: 100%; }
+}
