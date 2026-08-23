@@ -7,13 +7,17 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "bake:land": "node scripts/bake-land-dots.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@react-three/drei": "^9.114.3",
+    "@react-three/fiber": "^8.17.10",
     "motion": "^13.1.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "three": "^0.166.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
@@ -25,6 +29,8 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.12.0",
-    "vite": "^5.4.11"
+    "topojson-client": "^3.1.0",
+    "vite": "^5.4.11",
+    "world-atlas": "^2.0.2"
   }
 }

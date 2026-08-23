@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from 'motion/react';
+import { useTilt } from '../hooks/useTilt';
 import { stagger, fadeUp, inView } from '../lib/motion';
 import { useCountUp } from '../hooks/useCountUp';
 import './About.css';
@@ -25,6 +26,20 @@ function LeakHeadline() {
     <span className="leak-figure" ref={ref}>
       {low}–25%
     </span>
+  );
+}
+
+/** One revenue-leak card. Separate component so each gets its own tilt hook. */
+function LeakCard({ l, i }) {
+  const tilt = useTilt();
+  return (
+    <motion.div className="tilt-wrap" variants={fadeUp(24)}>
+      <article className="leak-card card tilt-3d" ref={tilt}>
+      <span className="leak-index lift-1" aria-hidden="true">0{i + 1}</span>
+      <h3 className="leak-title lift-1">{l.stat}</h3>
+        <p className="leak-body">{l.body}</p>
+      </article>
+    </motion.div>
   );
 }
 
@@ -59,13 +74,7 @@ export default function About() {
           whileInView="show"
           viewport={inView}
         >
-          {leaks.map((l, i) => (
-            <motion.article className="leak-card card card-hover" key={l.stat} variants={fadeUp(24)}>
-              <span className="leak-index" aria-hidden="true">0{i + 1}</span>
-              <h3 className="leak-title">{l.stat}</h3>
-              <p className="leak-body">{l.body}</p>
-            </motion.article>
-          ))}
+          {leaks.map((l, i) => <LeakCard key={l.stat} l={l} i={i} />)}
         </motion.div>
 
         <motion.p

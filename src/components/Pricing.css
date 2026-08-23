@@ -40,10 +40,10 @@
   font-weight: 800;
   color: var(--text);
 }
-.pricing-then span { font-size: 0.95rem; color: var(--text-faint); }
+.pricing-then span { font-size: 1.04rem; color: var(--text-faint); }
 
 .pricing-terms {
-  font-size: 0.94rem;
+  font-size: 1.02rem;
   color: var(--text-muted);
   margin-bottom: var(--sp-6);
 }
@@ -63,7 +63,7 @@
   display: flex;
   align-items: flex-start;
   gap: var(--sp-2);
-  font-size: 0.89rem;
+  font-size: 0.97rem;
   color: var(--text-muted);
   line-height: 1.5;
 }
@@ -79,4 +79,84 @@
 @media (max-width: 620px) {
   .pricing-includes { grid-template-columns: 1fr; }
   .pricing-card { padding: var(--sp-7) var(--sp-5); }
+}
+
+/* ============================================================
+   Coverage globe + pricing, side by side
+   ============================================================ */
+.pricing-inner {
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: var(--sp-8);
+  align-items: center;
+}
+
+.pricing-inner .pricing-card { max-width: 640px; margin: 0; }
+
+.pricing-globe {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.globe-canvas,
+.globe-placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 460px;
+  display: block;
+}
+
+.globe-caption {
+  width: min(340px, 100%);
+  margin-top: calc(var(--sp-4) * -1);
+  text-align: center;
+}
+
+.globe-caption-label {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: var(--sp-2);
+}
+
+/* A progress rail, driven by how much of the globe the car has actually
+   covered — the number is read out of the scene, not faked on a timer. */
+.globe-caption-bar {
+  display: block;
+  height: 5px;
+  border-radius: var(--r-pill);
+  background: var(--green-100);
+  overflow: hidden;
+}
+.globe-caption-bar i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  background: var(--primary);
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform .45s linear;
+}
+
+.globe-caption p {
+  margin: var(--sp-3) 0 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-faint);
+}
+
+@media (max-width: 900px) {
+  .pricing-inner { grid-template-columns: 1fr; gap: var(--sp-6); }
+  .pricing-inner .pricing-card { margin: 0 auto; }
+  .globe-canvas, .globe-placeholder { max-width: 340px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .globe-caption-bar i { transition: none; }
 }

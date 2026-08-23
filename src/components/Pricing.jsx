@@ -1,6 +1,9 @@
+import { Suspense, lazy, useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { stagger, fadeUp, inView } from '../lib/motion';
 import './Pricing.css';
+
+const CoverageGlobe = lazy(() => import('./CoverageGlobe'));
 
 const CALENDLY_URL = 'https://calendly.com/admin-spot-me/30min';
 
@@ -13,10 +16,30 @@ const includes = [
 
 export default function Pricing() {
   const reduced = useReducedMotion();
+  const [covered, setCovered] = useState(0);
 
   return (
     <section id="pricing" className="section section-alt pricing mesh">
-      <div className="container">
+      <div className="container pricing-inner">
+        <motion.div
+          className="pricing-globe"
+          initial={reduced ? false : { opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={inView}
+          transition={{ duration: 0.8 }}
+        >
+          <Suspense fallback={<div className="globe-placeholder" aria-hidden="true" />}>
+            <CoverageGlobe reduced={reduced} onProgress={setCovered} />
+          </Suspense>
+          <div className="globe-caption">
+            <span className="globe-caption-label">Spots covered</span>
+            <span className="globe-caption-bar" aria-hidden="true">
+              <i style={{ transform: `scaleX(${Math.min(1, covered)})` }} />
+            </span>
+            <p>One device covers five spots. Start with one lot — the map grows from there.</p>
+          </div>
+        </motion.div>
+
         <motion.div
           className="pricing-card card"
           variants={stagger(0.09)}

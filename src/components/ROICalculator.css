@@ -21,7 +21,7 @@
   justify-content: space-between;
   gap: var(--sp-3);
   font-family: var(--font-display);
-  font-size: 0.92rem;
+  font-size: 1.0rem;
   font-weight: 700;
   color: var(--text);
 }
@@ -33,7 +33,7 @@
   font-variant-numeric: tabular-nums;
 }
 
-.roi-hint { font-size: 0.78rem; color: var(--text-faint); }
+.roi-hint { font-size: 0.85rem; color: var(--text-faint); }
 
 /* range input — themed in both engines */
 .roi-range {
@@ -78,7 +78,7 @@
 
 .roi-out-label {
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.76rem;
   font-weight: 800;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -110,7 +110,7 @@
   align-items: baseline;
   justify-content: space-between;
   gap: var(--sp-4);
-  font-size: 0.88rem;
+  font-size: 0.96rem;
 }
 
 .roi-lines dt { color: var(--text-muted); }
@@ -125,7 +125,7 @@
 .roi-total {
   padding-top: var(--sp-3);
   border-top: 1px solid var(--border);
-  font-size: 0.98rem !important;
+  font-size: 1.07rem !important;
 }
 .roi-total dt { font-weight: 700; color: var(--text) !important; }
 
@@ -135,7 +135,7 @@
   max-width: 720px;
   margin: var(--sp-5) auto 0;
   text-align: center;
-  font-size: 0.79rem;
+  font-size: 0.86rem;
   line-height: 1.6;
   color: var(--text-faint);
 }

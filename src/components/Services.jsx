@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTilt } from '../hooks/useTilt';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { stagger, fadeUp, inView, EASE } from '../lib/motion';
 import './Services.css';
@@ -47,6 +48,29 @@ function Check() {
   );
 }
 
+/* Motion animates the wrapper, the tilt rotates the card. Putting both on one
+   element means motion's inline transform wins and the tilt never shows. */
+function OutcomeCard({ b }) {
+  const tilt = useTilt();
+  return (
+    <motion.div className="tilt-wrap" variants={fadeUp(26)}>
+      <article
+        ref={tilt}
+        className={`outcome-card card card-hover tilt-3d ${b.primary ? 'is-primary' : ''}`}
+      >
+        {b.primary && <span className="outcome-flag">Primary customer</span>}
+        <span className="outcome-audience">For {b.audience}</span>
+        <h3 className="outcome-title">{b.title}</h3>
+        <ul className="outcome-bullets">
+          {b.bullets.map((bullet) => (
+            <li key={bullet}><Check />{bullet}</li>
+          ))}
+        </ul>
+      </article>
+    </motion.div>
+  );
+}
+
 export default function Services() {
   const reduced = useReducedMotion();
   const [activeTab, setActiveTab] = useState('operators');
@@ -79,22 +103,7 @@ export default function Services() {
           whileInView="show"
           viewport={inView}
         >
-          {blocks.map((b) => (
-            <motion.article
-              key={b.key}
-              className={`outcome-card card card-hover ${b.primary ? 'is-primary' : ''}`}
-              variants={fadeUp(26)}
-            >
-              {b.primary && <span className="outcome-flag">Primary customer</span>}
-              <span className="outcome-audience">For {b.audience}</span>
-              <h3 className="outcome-title">{b.title}</h3>
-              <ul className="outcome-bullets">
-                {b.bullets.map((bullet) => (
-                  <li key={bullet}><Check />{bullet}</li>
-                ))}
-              </ul>
-            </motion.article>
-          ))}
+          {blocks.map((b) => <OutcomeCard key={b.key} b={b} />)}
         </motion.div>
 
         {/* Mobile: tabs, so the three don't become a long scroll. */}

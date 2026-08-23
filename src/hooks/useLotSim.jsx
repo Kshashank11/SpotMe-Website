@@ -30,34 +30,49 @@ export function useLotSim({
   const [playing, setPlaying] = useState(autoPlay && !reduced);
   const tickRef = useRef(0);
 
+  // A mirror of `spots` so a tick can be computed outside a state updater.
+  const spotsRef = useRef(spots);
+
   const step = useCallback(() => {
-    tickRef.current += 1;
-    setSpots((prev) => {
-      const next = [...prev];
-      // Flip one or two spots per tick — enough to feel alive, not chaotic.
-      const flips = 1 + (tickRef.current % 3 === 0 ? 1 : 0);
-      const changed = [];
-      for (let f = 0; f < flips; f++) {
-        const i = Math.floor(Math.random() * next.length);
-        const spot = next[i];
-        next[i] = { ...spot, occupied: !spot.occupied, since: tickRef.current };
-        changed.push({ index: i, occupied: !spot.occupied });
-      }
-      if (changed.length) {
-        setEvents((ev) =>
-          [
-            ...changed.map((c) => ({
-              id: `${tickRef.current}-${c.index}`,
-              index: c.index,
-              type: c.occupied ? 'park_start' : 'park_end',
-              at: Date.now(),
-            })),
-            ...ev,
-          ].slice(0, 12)
-        );
-      }
-      return next;
-    });
+    // Everything here is computed in the effect body rather than inside a
+    // setSpots updater. Updaters must be pure, and this one used to call
+    // setEvents from within itself — under StrictMode React invokes updaters
+    // twice, so every tick emitted its events twice and the second copy
+    // collided with the first on the `tick-index` key.
+    const tick = (tickRef.current += 1);
+    const next = [...spotsRef.current];
+
+    // Flip one or two spots per tick — enough to feel alive, not chaotic.
+    const flips = 1 + (tick % 3 === 0 ? 1 : 0);
+    const changed = [];
+    // Distinct indices, or the second flip just undoes the first.
+    const picked = new Set();
+    for (let f = 0; f < flips; f++) {
+      let i, guard = 0;
+      do { i = Math.floor(Math.random() * next.length); } while (picked.has(i) && ++guard < 20);
+      if (picked.has(i)) break;
+      picked.add(i);
+      const spot = next[i];
+      next[i] = { ...spot, occupied: !spot.occupied, since: tick };
+      changed.push({ index: i, occupied: !spot.occupied });
+    }
+
+    spotsRef.current = next;
+    setSpots(next);
+
+    if (changed.length) {
+      setEvents((ev) =>
+        [
+          ...changed.map((c) => ({
+            id: `${tick}-${c.index}`,
+            index: c.index,
+            type: c.occupied ? 'park_start' : 'park_end',
+            at: Date.now(),
+          })),
+          ...ev,
+        ].slice(0, 12)
+      );
+    }
   }, []);
 
   useEffect(() => {

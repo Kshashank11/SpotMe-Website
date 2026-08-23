@@ -76,7 +76,10 @@ function Navbar() {
       >
         <div className="navbar-inner container">
           <a href="#hero" className="navbar-logo" onClick={(e) => go(e, 'hero')}>
-            <img src="/SpotMeLogo.png" alt="SpotMe — smart parking" className="logo-image" />
+            <img src="/SpotMeLogo-transparent.png" alt="SpotMe — smart parking" className="logo-image" />
+            {/* A car slides in and the bay locks green — the whole promise of
+                the product in 26 pixels, next to the name. */}
+            <span className="logo-park" aria-hidden="true"><i /><i /><i /><b /></span>
           </a>
 
           <ul className="navbar-links">

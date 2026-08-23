@@ -50,13 +50,13 @@
 
 .faq-a {
   padding: 0 var(--sp-5) var(--sp-5);
-  font-size: 0.95rem;
+  font-size: 1.04rem;
   line-height: 1.68;
   color: var(--text-muted);
   max-width: 68ch;
 }
 
 @media (max-width: 560px) {
-  .faq-q { padding: var(--sp-4); font-size: 0.94rem; }
+  .faq-q { padding: var(--sp-4); font-size: 1.02rem; }
   .faq-a { padding: 0 var(--sp-4) var(--sp-4); }
 }

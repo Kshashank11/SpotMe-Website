@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from 'motion/react';
+import { useTilt } from '../hooks/useTilt';
 import { stagger, fadeUp, inView, EASE } from '../lib/motion';
 import './HowItWorks.css';
 
@@ -25,6 +26,28 @@ const steps = [
     icon: <path d="M5 12l4 4L19 6" />,
   },
 ];
+
+/** One step. Its own component so the tilt hook runs once per card rather
+ *  than once per render of the list, which the Rules of Hooks forbid. */
+function HowCard({ s }) {
+  const tilt = useTilt();
+  return (
+    <motion.div className="tilt-wrap" variants={fadeUp(26)}>
+      <article className="how-card card tilt-3d" ref={tilt}>
+      <div className="how-badge lift-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"
+             strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          {s.icon}
+        </svg>
+        <span className="how-n">{s.n}</span>
+      </div>
+      <h3 className="how-title lift-1">{s.title}</h3>
+      <p className="how-desc">{s.desc}</p>
+        <span className="how-meta">{s.meta}</span>
+      </article>
+    </motion.div>
+  );
+}
 
 export default function HowItWorks() {
   const reduced = useReducedMotion();
@@ -67,20 +90,7 @@ export default function HowItWorks() {
             whileInView="show"
             viewport={inView}
           >
-            {steps.map((s) => (
-              <motion.article className="how-card card card-hover" key={s.n} variants={fadeUp(26)}>
-                <div className="how-badge">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"
-                       strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    {s.icon}
-                  </svg>
-                  <span className="how-n">{s.n}</span>
-                </div>
-                <h3 className="how-title">{s.title}</h3>
-                <p className="how-desc">{s.desc}</p>
-                <span className="how-meta">{s.meta}</span>
-              </motion.article>
-            ))}
+            {steps.map((s) => <HowCard key={s.n} s={s} />)}
           </motion.div>
         </div>
       </div>

@@ -36,7 +36,7 @@ function Footer() {
     <footer className="footer">
       <div className="container footer-inner">
         <div className="footer-brand">
-          <img src="/SpotMeLogo.png" alt="SpotMe" className="footer-logo" loading="lazy" />
+          <img src="/SpotMeLogo-transparent.png" alt="SpotMe" className="footer-logo" loading="lazy" />
           <p className="footer-tagline">
             Radar-based occupancy for private parking operators. Know every spot,
             close the revenue leak, deploy in 20 minutes.

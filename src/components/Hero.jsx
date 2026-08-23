@@ -1,9 +1,14 @@
+import { lazy, Suspense } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { stagger, fadeUp, EASE } from '../lib/motion';
 import { useCountUp } from '../hooks/useCountUp';
 import { useLotSim } from '../hooks/useLotSim';
 import LotGrid from './LotGrid';
 import './Hero.css';
+
+// The 3D lot is the heaviest thing on the page; keep it out of the critical
+// path so the headline paints immediately and the scene arrives a beat later.
+const ParkingScene = lazy(() => import('./ParkingScene'));
 
 const CALENDLY_URL = 'https://calendly.com/admin-spot-me/30min';
 const FOUNDER_MAILTO = 'mailto:admin@spot-me.net?subject=SpotMe%20Demo%20Request';
@@ -16,7 +21,7 @@ const stats = [
 ];
 
 function Stat({ value, prefix = '', suffix = '', desc }) {
-  const [ref, display] = useCountUp(value);
+  const [ref, display] = useCountUp(value, { margin: '0px' });
   return (
     <div className="hero-stat" ref={ref}>
       <span className="stat-value">{prefix}{display}{suffix}</span>
@@ -78,7 +83,21 @@ function Hero() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.75, delay: 0.2, ease: EASE }}
         >
-          <div className="lot-card card">
+          {/* The scene sits at the back; the live panel floats above it. Two real
+              planes rather than one flat card — the depth is the point. */}
+          <div className="scene-wrap">
+            <Suspense fallback={<div className="scene-placeholder" aria-hidden="true" />}>
+              <ParkingScene reduced={!!reduced} />
+            </Suspense>
+            <div className="scene-vignette" aria-hidden="true" />
+          </div>
+
+          <motion.div
+            className="lot-card card floating"
+            initial={reduced ? false : { opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.75, ease: EASE }}
+          >
             <div className="lot-card-head">
               <div className="lot-card-title">
                 <span className="live-badge">
@@ -93,7 +112,7 @@ function Hero() {
               </div>
             </div>
 
-            <LotGrid spots={lot.spots} columns={6} compact />
+            <LotGrid spots={lot.spots} columns={8} compact />
 
             <div className="lot-card-foot">
               <div className="lot-meter" aria-hidden="true">
@@ -105,8 +124,7 @@ function Hero() {
               </div>
               <span className="lot-card-util">{lot.utilization}% utilised</span>
             </div>
-            <p className="lot-card-note">Illustrative simulation</p>
-          </div>
+          </motion.div>
 
           <div className="hero-glow" aria-hidden="true" />
         </motion.div>

@@ -18,7 +18,7 @@
 
 .demo-lot-name {
   font-family: var(--font-display);
-  font-size: 0.92rem;
+  font-size: 1.0rem;
   font-weight: 700;
 }
 
@@ -30,7 +30,7 @@
   gap: 6px;
   padding: 7px 13px;
   font-family: var(--font-display);
-  font-size: 0.82rem;
+  font-size: 0.89rem;
   font-weight: 700;
   color: var(--text);
   background: var(--surface);
@@ -55,7 +55,7 @@
   gap: var(--sp-4);
   flex-wrap: wrap;
   margin-top: var(--sp-4);
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
 }
 .demo-legend span { display: inline-flex; align-items: center; gap: 6px; }
@@ -70,7 +70,7 @@
   background: color-mix(in srgb, var(--free) 10%, transparent);
 }
 
-.demo-note { color: var(--text-faint); font-size: 0.72rem; margin-left: auto; }
+.demo-note { color: var(--text-faint); font-size: 0.78rem; margin-left: auto; }
 
 /* ---- side panel ---- */
 .demo-side { display: flex; flex-direction: column; min-width: 0; }
@@ -85,7 +85,7 @@
 .demo-metric { display: flex; flex-direction: column; gap: 2px; }
 
 .demo-metric-label {
-  font-size: 0.68rem;
+  font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: .09em;
   text-transform: uppercase;
@@ -100,7 +100,7 @@
   color: var(--text);
   font-variant-numeric: tabular-nums;
 }
-.demo-metric-value small { font-size: 0.8rem; color: var(--text-faint); font-weight: 600; }
+.demo-metric-value small { font-size: 0.87rem; color: var(--text-faint); font-weight: 600; }
 
 .demo-meter {
   height: 6px;
@@ -116,7 +116,7 @@
 }
 
 .demo-feed-title {
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -158,11 +158,11 @@
 }
 
 .demo-event-text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
-.demo-event-text strong { font-size: 0.85rem; font-weight: 700; color: var(--text); }
-.demo-event-text span { font-size: 0.75rem; color: var(--text-faint); }
+.demo-event-text strong { font-size: 0.93rem; font-weight: 700; color: var(--text); }
+.demo-event-text span { font-size: 0.82rem; color: var(--text-faint); }
 
 .demo-event-time {
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   color: var(--text-faint);
   font-variant-numeric: tabular-nums;
   flex: none;
@@ -170,7 +170,7 @@
 
 .demo-empty {
   padding: var(--sp-5) 0;
-  font-size: 0.84rem;
+  font-size: 0.92rem;
   color: var(--text-faint);
 }
 

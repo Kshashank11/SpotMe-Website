@@ -61,7 +61,7 @@
 
   /* --- space / radius / shadow --- */
   --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
-  --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px; --sp-9: 96px;
+  --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px; --sp-9: 88px;
 
   --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-xl: 22px; --r-pill: 999px;
 
@@ -128,8 +128,8 @@ body {
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 800;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
+  line-height: 1.2;
+  letter-spacing: -0.016em;
   color: var(--text);
 }
 
@@ -305,3 +305,115 @@ img, svg { max-width: 100%; }
   :root { --sp-9: 64px; --sp-8: 48px; }
   .container { padding: 0 var(--sp-4); }
 }
+
+/* ============================================================
+   Depth system — 3D tilt, glare and lift.
+   Cards opt in with .tilt-3d; the hook writes the custom
+   properties and the card composes them with its own transform.
+   ============================================================ */
+.tilt-3d {
+  transform-style: preserve-3d;
+  transform:
+    perspective(900px)
+    rotateX(var(--tilt-rx, 0deg))
+    rotateY(var(--tilt-ry, 0deg))
+    scale(var(--tilt-scale, 1));
+  transition: box-shadow .35s ease;
+  will-change: transform;
+  position: relative;
+}
+/* the highlight that tracks the pointer — sells the surface as physical */
+.tilt-3d::after {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: var(--glare-o, 0);
+  /* Behind the content, and gentle. At full strength over the text it lifted
+     body copy off the card and cost real contrast. */
+  z-index: 0;
+  background: radial-gradient(
+    240px circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(255, 255, 255, .5), transparent 62%);
+  transition: opacity .3s ease;
+}
+.tilt-3d > * { position: relative; z-index: 1; transform: translateZ(0.01px); }
+
+/* content that should stand off the card face while it tilts */
+.lift-1 { transform: translateZ(18px); }
+.lift-2 { transform: translateZ(34px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt-3d { transform: none; transition: none; }
+  .tilt-3d::after { display: none; }
+  .lift-1, .lift-2 { transform: none; }
+}
+
+/* ============================================================
+   Logo — a car slides home under the mark, once, on load, and
+   again on hover. The wordmark itself gets a slight 3D turn so
+   it reads as an object rather than a flat PNG.
+   ============================================================ */
+.navbar-logo { perspective: 600px; display: inline-flex; align-items: center; }
+
+.navbar-logo .logo-image {
+  transform: rotateY(0deg) translateZ(0);
+  transition: transform .55s cubic-bezier(.16, 1, .3, 1), filter .55s;
+  will-change: transform;
+}
+.navbar-logo:hover .logo-image {
+  transform: rotateY(-13deg) rotateX(4deg) translateZ(14px) scale(1.03);
+  filter: drop-shadow(0 8px 16px rgba(16, 35, 26, .18));
+}
+
+/* The car that parks itself, beside the wordmark.
+   Kept to three bays and one car: at 16px tall anything more detailed turns
+   into a smudge, which is exactly what the first attempt did. */
+.logo-park {
+  position: relative;
+  width: 46px; height: 16px;
+  margin-left: 10px;
+  flex: none;
+}
+.logo-park i {
+  position: absolute; top: 3px;
+  width: 12px; height: 10px;
+  box-sizing: border-box;
+  border: 1.3px solid var(--green-300);
+  border-radius: 2px;
+}
+.logo-park i:nth-of-type(1) { left: 0; }
+.logo-park i:nth-of-type(2) { left: 16px; }
+.logo-park i:nth-of-type(3) {
+  left: 32px;
+  animation: logo-bay-lock 4.6s ease-in-out infinite;
+}
+.logo-park b {
+  position: absolute; top: 4.5px; left: 0.5px;
+  width: 11px; height: 7px;
+  border-radius: 2px 3px 2px 2px;
+  background: var(--primary);
+  animation: logo-park-in 4.6s cubic-bezier(.22, 1, .3, 1) infinite;
+}
+@keyframes logo-park-in {
+  0%        { transform: translateX(-15px); opacity: 0; }
+  12%       { opacity: 1; }
+  50%, 88%  { transform: translateX(32px); opacity: 1; }
+  100%      { transform: translateX(32px); opacity: 0; }
+}
+@keyframes logo-bay-lock {
+  0%, 44%   { border-color: var(--green-300); background: transparent; }
+  56%, 88%  { border-color: var(--primary);   background: var(--green-100); }
+  100%      { border-color: var(--green-300); background: transparent; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-park b { animation: none; transform: translateX(32px); }
+  .logo-park i:nth-of-type(3) { animation: none; border-color: var(--primary); background: var(--green-100); }
+  .navbar-logo:hover .logo-image { transform: none; }
+}
+
+/* Motion owns the entrance (translate/opacity) on the wrapper; the tilt owns
+   the rotation on the card inside it. Sharing one element means motion's inline
+   transform silently wins and the tilt never appears. */
+.tilt-wrap { height: 100%; display: block; }
+.tilt-wrap > .tilt-3d { height: 100%; }

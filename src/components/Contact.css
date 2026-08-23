@@ -48,13 +48,13 @@
 .contact-item > span:last-child { display: flex; flex-direction: column; }
 .contact-item strong {
   font-family: var(--font-display);
-  font-size: 0.75rem;
+  font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: .06em;
   text-transform: uppercase;
   color: var(--text-faint);
 }
-.contact-item > span:last-child { font-size: 0.94rem; color: var(--text); }
+.contact-item > span:last-child { font-size: 1.02rem; color: var(--text); }
 
 /* ---- form ---- */
 .contact-form-wrapper { padding: var(--sp-6); }
@@ -67,7 +67,7 @@
 
 .form-group label {
   font-family: var(--font-display);
-  font-size: 0.84rem;
+  font-size: 0.92rem;
   font-weight: 700;
   color: var(--text);
 }
@@ -78,7 +78,7 @@
   width: 100%;
   padding: 11px 13px;
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 1.04rem;
   color: var(--text);
   background: var(--bg);
   border: 1px solid var(--border-strong);
@@ -100,7 +100,7 @@
 .btn-submit:disabled { opacity: .6; cursor: not-allowed; }
 
 .error-message {
-  font-size: 0.86rem;
+  font-size: 0.94rem;
   color: var(--full);
   background: color-mix(in srgb, var(--full) 9%, transparent);
   border: 1px solid color-mix(in srgb, var(--full) 25%, transparent);

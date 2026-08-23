@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  padding: calc(var(--nav-h) + var(--sp-9)) 0 var(--sp-9);
+  padding: calc(var(--nav-h) + var(--sp-6)) 0 var(--sp-8);
   overflow: hidden;
   background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
 }
@@ -14,10 +14,15 @@
   align-items: center;
 }
 
-.hero-content { max-width: 620px; }
+.hero-content { max-width: 660px; }
 
 .hero-title {
-  font-size: var(--step-5);
+  /* step-5 ran to 72px, which pushed this three-sentence headline to five
+     lines and shoved the body copy below the fold. */
+  font-size: var(--step-4);
+  line-height: 1.16;
+  letter-spacing: -0.018em;
+  text-wrap: balance;
   margin-bottom: var(--sp-5);
 }
 
@@ -64,7 +69,7 @@
 }
 
 .stat-desc {
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   color: var(--text-faint);
   line-height: 1.4;
 }
@@ -109,7 +114,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.68rem;
+  font-size: 0.76rem;
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -118,7 +123,7 @@
 
 .lot-card-name {
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  font-size: 0.97rem;
   font-weight: 700;
   color: var(--text);
 }
@@ -130,7 +135,7 @@
   color: var(--text);
 }
 .lot-card-count strong { font-size: 1.6rem; font-weight: 800; }
-.lot-card-count span { font-size: 0.95rem; color: var(--text-faint); font-weight: 600; }
+.lot-card-count span { font-size: 1.04rem; color: var(--text-faint); font-weight: 600; }
 
 .lot-card-foot {
   display: flex;
@@ -154,7 +159,7 @@
 }
 
 .lot-card-util {
-  font-size: 0.8rem;
+  font-size: 0.87rem;
   font-weight: 700;
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
@@ -163,7 +168,7 @@
 
 .lot-card-note {
   margin-top: var(--sp-3);
-  font-size: 0.7rem;
+  font-size: 0.76rem;
   color: var(--text-faint);
   text-align: right;
   letter-spacing: .02em;
@@ -189,4 +194,75 @@
   .hero { padding-top: calc(var(--nav-h) + var(--sp-7)); }
   .hero-stats { grid-template-columns: repeat(2, 1fr); gap: var(--sp-5) var(--sp-4); }
   .hero-buttons .btn { flex: 1 1 100%; }
+}
+
+/* ============================================================
+   3D lot — the scene sits at the back, the live panel floats
+   above it. Two real planes, so the hero has depth instead of
+   being one flat card on a flat page.
+   ============================================================ */
+.hero-visual {
+  position: relative;
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scene-wrap {
+  position: absolute;
+  inset: -6% -4% -2% -6%;
+}
+
+.parking-canvas { width: 100% !important; height: 100% !important; display: block; }
+
+/* Fades the tarmac into the page so the canvas has no hard edge. */
+.scene-vignette {
+  position: absolute; inset: 0; pointer-events: none;
+  background: none;
+}
+
+.scene-placeholder {
+  position: absolute; inset: 0;
+  border-radius: var(--r-xl);
+  background:
+    radial-gradient(80% 60% at 50% 40%, var(--green-50), transparent 70%),
+    var(--bg-alt);
+}
+
+/* The live panel, lifted off the scene. */
+.lot-card.floating {
+  position: relative;
+  z-index: 2;
+  width: min(336px, 76%);
+  margin-left: auto;
+  margin-right: -6%;
+  margin-top: 52%;
+  padding: 15px 16px 16px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 2px 6px rgba(16, 35, 26, .06),
+    0 18px 40px rgba(16, 35, 26, .13),
+    0 40px 90px rgba(16, 35, 26, .10);
+  transition: transform .5s cubic-bezier(.16,1,.3,1), box-shadow .5s;
+}
+.hero-visual:hover .lot-card.floating {
+  transform: translateY(-6px);
+  box-shadow:
+    0 2px 6px rgba(16, 35, 26, .06),
+    0 26px 54px rgba(16, 35, 26, .16),
+    0 54px 110px rgba(16, 35, 26, .12);
+}
+.lot-card.floating .lot-card-note { display: none; }
+
+@media (max-width: 900px) {
+  .hero-visual { min-height: 430px; }
+  .scene-wrap { inset: -4% -6% 4% -6%; }
+  .lot-card.floating { margin: 40% auto 0; width: min(340px, 92%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lot-card.floating, .hero-visual:hover .lot-card.floating { transition: none; transform: none; }
 }

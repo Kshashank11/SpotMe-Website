@@ -35,7 +35,7 @@
 }
 
 .leak-body {
-  font-size: 0.94rem;
+  font-size: var(--step-0);
   color: var(--text-muted);
   line-height: 1.6;
 }
