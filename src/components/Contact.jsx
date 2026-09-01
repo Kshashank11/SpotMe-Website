@@ -22,16 +22,46 @@ function Contact() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  /**
+   * Reject rather than repair.
+   *
+   * The control-character check on the email matters most: a newline in an
+   * address is how header injection gets attempted against anything that later
+   * builds a mail header from it.
+   */
+  const validate = ({ name, email, company, message }) => {
+    const CONTROL = /[\u0000-\u001F\u007F]/;
+    if (!name.trim()) return 'Please enter your name.';
+    if (name.trim().length > 80) return 'Name is too long.';
+    if (!email.trim()) return 'Please enter your email address.';
+    if (email.length > 254) return 'Email address is too long.';
+    if (CONTROL.test(email)) return 'That email address is not valid.';
+    if (!/^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/.test(email.trim())) {
+      return 'Please enter a valid email address.';
+    }
+    if (company.length > 120) return 'Company name is too long.';
+    if (!message.trim()) return 'Please include a message.';
+    if (message.length > 4000) return 'Message is too long (4000 characters max).';
+    return null;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const problem = validate(formData);
+    if (problem) {
+      setError(problem);
+      return;
+    }
+
     setIsLoading(true);
     setError('');
 
     const templateParams = {
-      from_name: formData.name,
-      from_email: formData.email,
-      company: formData.company || 'Not provided',
-      message: formData.message,
+      from_name: formData.name.trim(),
+      from_email: formData.email.trim().toLowerCase(),
+      company: formData.company.trim() || 'Not provided',
+      message: formData.message.trim(),
     };
 
     try {
@@ -141,25 +171,25 @@ function Contact() {
                   <div className="form-group">
                     <label htmlFor="name">Full name</label>
                     <input type="text" id="name" name="name" value={formData.name}
-                           onChange={handleChange} required autoComplete="name" />
+                           onChange={handleChange} required autoComplete="name" maxLength={80} />
                   </div>
                   <div className="form-group">
                     <label htmlFor="email">Email address</label>
                     <input type="email" id="email" name="email" value={formData.email}
-                           onChange={handleChange} required autoComplete="email" />
+                           onChange={handleChange} required autoComplete="email" maxLength={254} />
                   </div>
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="company">Company <span className="optional">(optional)</span></label>
                   <input type="text" id="company" name="company" value={formData.company}
-                         onChange={handleChange} autoComplete="organization" />
+                         onChange={handleChange} autoComplete="organization" maxLength={120} />
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="message">Message</label>
                   <textarea id="message" name="message" value={formData.message}
-                            onChange={handleChange} required rows="4"
+                            onChange={handleChange} required rows="4" maxLength={4000}
                             placeholder="How many spots do you operate, and where?" />
                 </div>
 
